@@ -44,8 +44,12 @@ public class Main {
 				if (articles.size() == 0) {
 					System.out.println("게시글이 없습니다");
 					continue;
-				} else {
-					System.out.println("게시글 있다.");
+				}
+				System.out.println("번호    |  제목");
+				for (int i = articles.size() - 1; i >= 0; i--) {
+					Article article = articles.get(i);
+
+					System.out.printf("%d  	 |  %s\n", article.id, article.title);
 				}
 			} else {
 				System.out.println("존재하지 않는 명령어 입니다");
