@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.KoreaIT.java.AM.dto.Article;
 import com.KoreaIT.java.AM.dto.Member;
 import com.KoreaIT.java.AM.util.Util;
 
@@ -32,13 +31,30 @@ public class MemberController extends Controller {
 		case "login":
 			doLogin();
 			break;
+		case "logout":
+			doLogout();
+			break;
 		default:
 			System.out.println("존재하지 않는 명령어입니다.");
 			break;
 		}
 	}
 
+	private void doLogout() {
+		if (isLogined() == false) {
+			System.out.println("로그인 상태가 아닙니다.");
+			return;
+		}
+
+		loginedMember = null;
+		System.out.println("로그아웃 되었습니다.");
+	}
+
 	private void doLogin() {
+		if (isLogined()) {
+			System.out.println("이미 로그인 되어 있습니다.");
+			return;
+		}
 		System.out.printf("로그인 아이디 : ");
 		String loginId = sc.nextLine();
 		System.out.printf("로그인 비밀번호 : ");
@@ -122,6 +138,10 @@ public class MemberController extends Controller {
 
 		System.out.printf("%d번 회원이 가입하였습니다\n", id);
 
+	}
+
+	private boolean isLogined() {
+		return loginedMember != null;
 	}
 
 	private boolean isJoinableLoginId(String loginId) {
