@@ -12,7 +12,6 @@ public class MemberController extends Controller {
 	private List<Member> members;
 	private String command;
 	private String actionMethodName;
-	private Member loginedMember;
 
 	public MemberController(Scanner sc) {
 		this.sc = sc;
@@ -60,7 +59,6 @@ public class MemberController extends Controller {
 		System.out.printf("로그인 비밀번호 : ");
 		String loginPw = sc.nextLine();
 
-		// 사용자에게 입력받은 아이디에 해당하는 회원이 존재하는지
 		Member member = getMemberByLoginId(loginId);
 
 		if (member == null) {
@@ -138,10 +136,6 @@ public class MemberController extends Controller {
 
 		System.out.printf("%d번 회원이 가입하였습니다\n", id);
 
-	}
-
-	private boolean isLogined() {
-		return loginedMember != null;
 	}
 
 	private boolean isJoinableLoginId(String loginId) {
