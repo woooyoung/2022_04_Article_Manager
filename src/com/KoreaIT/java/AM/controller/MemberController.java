@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.KoreaIT.java.AM.container.Container;
 import com.KoreaIT.java.AM.dto.Member;
 import com.KoreaIT.java.AM.util.Util;
 
@@ -16,7 +17,7 @@ public class MemberController extends Controller {
 	public MemberController(Scanner sc) {
 		this.sc = sc;
 
-		members = new ArrayList<Member>();
+		members = Container.memberDao.members;
 	}
 
 	public void doAction(String command, String actionMethodName) {
@@ -72,8 +73,8 @@ public class MemberController extends Controller {
 		System.out.println("테스트를 위한 회원 데이터를 생성합니다.");
 
 		members.add(new Member(1, Util.getNowDateStr(), "admin", "admin", "관리자"));
-		members.add(new Member(2, Util.getNowDateStr(), "test1", "test1", "유저1"));
-		members.add(new Member(3, Util.getNowDateStr(), "test2", "test2", "유저2"));
+		members.add(new Member(2, Util.getNowDateStr(), "test1", "test1", "김철수"));
+		members.add(new Member(3, Util.getNowDateStr(), "test2", "test2", "김영희"));
 	}
 
 	private Member getMemberByLoginId(String loginId) {
